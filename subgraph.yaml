@@ -1,0 +1,28 @@
+specVersion: 0.0.4
+description: OG NFT collection for ethereum
+repository: https://github.com/graphprotocol/example-subgraphs
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: OG
+    network: mainnet
+    source:
+      startBlock: 51807
+      address: "0x5564886ca2C518d1964E5FCea4f423b41Db9F561"
+      abi: OG
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - OG
+      abis:
+        - name: OG
+          file: ./abis/OG.json
+      callHandlers:
+        - function: reserve(bytes32)
+          handler: handleReserve
+        - function: transfer(bytes32,address)
+          handler: handleTransfer
+      file: ./src/mapping.ts

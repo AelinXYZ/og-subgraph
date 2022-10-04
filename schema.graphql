@@ -1,0 +1,4 @@
+type OG @entity {
+  id: ID!
+  owner: String!
+}
